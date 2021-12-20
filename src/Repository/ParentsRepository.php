@@ -21,7 +21,7 @@ class ParentsRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->findBy(array(), array('id' => 'DESC'));g
+        return $this->findBy(array(), array('id' => 'DESC'))
     }
     // /**
     //  * @return Parents[] Returns an array of Parents objects
