@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LISTE ELEVES
+{% endblock %}
+
+{% block body %}
+	<div class="row my-5">
+		<div class="col-md-11 mx-auto">
+			<h1 class="text-primary">Liste des Elèves</h1>
+
+			<div class="card">
+
+				{% if eleves  %}
+				<button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#demo">
+						RECHERCHE AVANCÉE
+					</button>
+					<div id="demo" class="collapse">
+						<form class="form-inline" method="post">
+
+							<div class="form-group">
+
+								<input type="text" class="form-control" id="motCles" placeholder="Search" name="motCles">&ensp;
+							</div>
+							<label class="radio-inline">
+								<input type="radio" name="optradio" value='1' checked>&ensp; Prénom
+							</label>&ensp;
+							{# <label class="radio-inline">
+								<input type="radio" name="optradio" value='2'>&ensp;Nom Famille
+							</label>&ensp; #}
+							<label class="radio-inline">
+								<input type="radio" name="optradio" value='3' placeholder="YYYY-MM-DD">&ensp; Date de Naissance (YYYY-MM-DD)
+							</label>&ensp;&ensp;&ensp;&ensp;
+							<input type="submit" value="Rechercher">
+						</form>
+					</div>
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th>Photo</th>
+								<th>Prenom</th>
+								<th>Nom de Famille</th>
+								<th>Classe</th>
+								<th>N°Inscription</th>
+								<th>Date de Naissance</th>
+								<th>Sexe</th>
+
+								<th class="text-center">Show | Update | Delete</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for eleve in eleves %}
+								<tr>
+									<td><img src="{{asset('/uploads/images/eleves/' ~ eleve.image) }}" alt="" width="60" height="50"></td>
+									<td>{{ eleve.prenom }}</td>
+									<td>{{ eleve.getParent().nomFamille }}</td>
+									<td>{{ eleve.getClasse().nomClasse }}</td>
+									<td>{{ "%04d" | format(eleve.getParent().id)  }}</td>
+									<td>{{ eleve.dateNaissanceAt|date('d/m/Y') }}</td>
+									{% if eleve.Sexe  %}
+										<td>M</td>
+									{% else  %}
+										<td>F</td>
+									{% endif %}
+
+									<td class="text-center">
+										<a href="{{ path('eleve_edit',{id: eleve.id})}}" class="btn btn-sm btn-primary">
+											<i class="fa fa-eye"></i>
+										</a>
+										<a href="{{ path('eleve_update',{ id: eleve.id})}}" class="btn btn-sm btn-warning">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="{{ path('eleve_delete',{ id: eleve.id})}}" class="btn btn-sm btn-danger">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+
+								</tr>
+							{% endfor %}
+							<td class="pagination pagination-sm">
+								{{ knp_pagination_render(eleves) }}
+							</td>
+						</tbody>
+					</table>
+
+	{{ knp_pagination_render(eleves) }}
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

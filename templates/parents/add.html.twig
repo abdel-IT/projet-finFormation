@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NEW PARENT
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row my-5">
+			<div class="col-md-12 mx-auto">
+				{{form_start(form) }}
+				<div class="row">
+					{{ form_row(form.nomFamille) }}
+					&nbsp
+					{{ form_row(form.prenomPere) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.nomFamilleMere) }}&nbsp
+					{{ form_row(form.prenomMere) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.totalPaiement) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.rue) }}&nbsp
+					{{ form_row(form.numero) }}&nbsp
+					{{ form_row(form.codePostal) }}&nbsp
+					{{ form_row(form.pays) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.gsmPere) }}&nbsp
+					{{ form_row(form.gsmMere) }}&nbsp
+					{{ form_row(form.telephone) }}&nbsp
+					{{ form_row(form.email) }}
+				</div>
+				<div class="row">
+					{{ form_row(form.Ajouter) }}
+					{{form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

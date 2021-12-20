@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Professeurs 
+{% endblock %}
+
+{% block body %}
+	<div class="row my-5">
+		<div class="col-md-10 mx-auto">
+			<h1 class="text-primary">Liste des Professeurs</h1>
+
+			<div class="card">
+
+				{% if professeurs  %}
+					<table class="table table-dark table-striped">
+						<thead> 
+							<tr>
+								<th>ID </th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Gsm</th>
+
+								<th class="text-center">Show | Update | Delete</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for professeur in professeurs %}
+								<tr>
+									<td>{{ "%04d" | format(professeur.id)  }}</td>
+									<td>{{ professeur.nom }}</td>
+									<td>{{ professeur.prenom}}</td>
+									<td>{{ professeur.telephone}}</td>
+									
+									
+
+
+									<td class="text-center">
+										<a href="{{ path('professeur_edit',{id: professeur.id})}}" class="btn btn-sm btn-primary">
+											<i class="fa fa-eye"></i>
+										</a>
+										<a href="{{ path('professeur_update',{ id: professeur.id})}}" class="btn btn-sm btn-warning">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="{{ path('professeur_delete',{ id: professeur.id})}}" class="btn btn-sm btn-danger">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+
+								</tr>
+							{% endfor %}
+							<td class="pagination pagination-lg">
+								{{ knp_pagination_render(professeurs) }}
+							</td>
+						</tbody>
+					</table>
+
+
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

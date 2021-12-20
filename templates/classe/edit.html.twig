@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show Classe
+
+{% endblock %}
+
+{% block body %}
+	{% if classe  %}
+		<H1>
+			{{ classe.getNiveauScolaire().nomNiveauScolaire }}
+			{{ classe.nomClasse }}</H1>
+
+	{% endif %}
+
+	<div class="row my-5">
+		<div class="col-md-10 mx-auto">
+
+			<div class="card">
+
+				{% if classe  %}
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th>Niveau Scolaire</th>
+								<th>Nom de Classe</th>
+
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td>{{ classe.getNiveauScolaire().nomNiveauScolaire }}</td>
+								<td>{{ classe.nomClasse }}</td>
+								<td>{# <a href="{{ path('eleve_add',{id_parent: parent.id})}}" class="btn btn-sm btn-success">
+																																																							<i class="fas fa-user-circle"></i>
+																																																						</a> #}
+									{# <a href="{{ path('parent_update',{ id: parent.id})}}" class="btn btn-sm btn-warning">
+																																																																																											<i class="fa fa-edit"></i>
+																																																																																										</a>
+																																																																																										<a href="{{ path('parent_delete',{ id: parent.id})}}" class="btn btn-sm btn-danger">
+																																																																																											<i class="fa fa-trash"></i>
+																																																																																										</a> #}
+								</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+
+					<div class="card">
+						{% if show=='classe'  %}
+							<a href="{{ path('classe_list')}}" class="btn btn-sm btn-primary">
+								<i class="fa-solid fa-circle-arrow-left"></i>
+							</a>
+						{# {% else  %}
+							<a href="{{ path('_edit',{id: eleve.getParent().id})}}" class="btn btn-sm btn-primary">
+								<i class="fa-solid fa-circle-arrow-left"></i>
+							</a> #}
+						{% endif %}
+
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

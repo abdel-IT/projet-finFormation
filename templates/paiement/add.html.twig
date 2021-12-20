@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Paiement
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		{{form_start(formPaiement) }}
+		{# 
+						{{ form_row(formPaiement.parent) }}
+						{{ form_row(formPaiement.prenom) }}
+						{{ form_row(formPaiement.dateNaissanceAt ) }}
+						{{ form_row(formPaiement.foto) }}
+						{{ form_row(formPaiement.sexe) }}
+						{{ form_row(formPaiement.Ajouter) }} #}
+
+		{{form_end(formPaiement) }}
+
+	</div>
+{% endblock %}

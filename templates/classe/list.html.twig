@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des classes
+{% endblock %}
+
+{% block body %}
+	<div class="row my-5">
+		<div class="col-md-10 mx-auto">
+			<h1 class="text-primary">Liste des classes</h1>
+
+			<div class="card">
+
+				{% if classes  %}
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th>ID Classe</th>
+								<th>Nom de classe</th>
+								<th>Niveau Scolaire</th>
+
+								<th class="text-center">Show | Update | Delete</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for classe in classes %}
+								<tr>
+									<td>{{ "%04d" | format(classe.id)  }}</td>
+									<td>{{ classe.nomClasse }}</td>
+									<td>{{ classe.getNiveauScolaire().nomNiveauScolaire }}</td>
+
+
+									<td class="text-center">
+										<a href="{{ path('classe_edit',{id: classe.id})}}" class="btn btn-sm btn-primary">
+											<i class="fa fa-eye"></i>
+										</a>
+										<a href="{{ path('classe_update',{ id: classe.id})}}" class="btn btn-sm btn-warning">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="{{ path('classe_delete',{ id: classe.id})}}" class="btn btn-sm btn-danger">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+
+								</tr>
+							{% endfor %}
+							<td class="pagination pagination-lg">
+								{{ knp_pagination_render(classes) }}
+							</td>
+						</tbody>
+					</table>
+
+
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

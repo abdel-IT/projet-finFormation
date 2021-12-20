@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UPDATE PARENT
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		{{form_start(form) }}
+		<div class="row">
+			{{ form_row(form.nomFamille) }}
+			{{ form_row(form.prenomPere) }}
+		</div>
+		<div class="row">
+			{{ form_row(form.nomFamilleMere) }}
+			{{ form_row(form.prenomMere) }}
+		</div>
+		<div class="row">
+			{{ form_row(form.totalPaiement) }}
+		</div>
+		<div class="row">
+			{{ form_row(form.rue) }}
+			{{ form_row(form.numero) }}
+			{{ form_row(form.codePostal) }}
+			{{ form_row(form.pays) }}
+		</div>
+		<div class="row">
+
+			{{ form_row(form.gsmPere) }}
+			{{ form_row(form.gsmMere) }}
+			{{ form_row(form.telephone) }}
+			{{ form_row(form.email) }}
+		</div>
+		<div class="row">
+			{{ form_row(form.Ajouter, { 'label' : 'Modifier' }) }}
+			{{form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

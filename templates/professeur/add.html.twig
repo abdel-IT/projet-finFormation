@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Professeur
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		{{form_start(formProfesseur) }}
+		
+						{{ form_row(formProfesseur.nom) }}
+						{{ form_row(formProfesseur.prenom) }}
+						{{ form_row(formProfesseur.telephone ) }}
+						{{ form_row(formProfesseur.classes) }}
+						{# {{ form_row(formProfesseur.sexe) }} #}
+						{{ form_row(formProfesseur.Ajouter) }}
+
+		{{form_end(formProfesseur) }}
+
+	</div>
+{% endblock %}

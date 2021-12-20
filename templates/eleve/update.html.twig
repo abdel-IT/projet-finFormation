@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UPDATE ELEVE
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+
+		{{form_start(formEleve) }}
+
+		{{ form_row(formEleve.parent, { 'label' : 'Nom de Famille' }) }}
+		{{ form_row(formEleve.prenom, { 'label' : 'Prénom' }) }}
+		{{ form_row(formEleve.dateNaissanceAt, { 'label' : 'Date de Naissance' }) }}
+		{# {{ form_row(formEleve.foto) }} #}
+		{{ form_row(formEleve.sexe) }}
+		{{ form_row(formEleve.classe) }} 
+		{{ form_row(formEleve.imageFile) }}
+		{{ form_row(formEleve.Ajouter, { 'label' : 'Modifier' }) }}
+
+		{{form_end(formEleve) }}
+
+	</div>
+{% endblock %}

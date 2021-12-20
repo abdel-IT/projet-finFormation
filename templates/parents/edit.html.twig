@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show PARENTS
+{% endblock %}
+
+{% block body %}
+	<div class="row my-5">
+		<div class="col-md-12 mx-auto">
+			<div class="card">
+				{% if parent  %}
+
+					<button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#demo">
+						DETAIL  PAIEMENTS
+					</button>
+					<div id="demo" class="collapse">
+						<h4 class="text-center">
+							Frais d'inscription :{{parent.totalPaiement}}€</h4>
+						<div class="col-md-4 mx-auto">
+
+							{% if detailsPaiements  %}
+								<table class="table table-dark table-striped">
+									<thead>
+										<tr>
+											<th>Date de Paiement</th>
+											<th>Montant</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for detailsPaiement in detailsPaiements %}
+											<tr>
+												<td>{{ detailsPaiement.datePaiement | date('d/m/Y H:i:s') }}</td>
+												<td>{{ detailsPaiement.montant}}</td>
+											</tr>
+										{% endfor %}
+										<tr>
+											<td></td>
+											<td>------</td>
+										</tr>
+
+										<tr>
+											<td></td>
+											<td>
+												Total :
+												{{dejaPayer.total}}</td>
+										</tr>
+
+									</tbody>
+								</table>
+							{% endif %}
+
+						</div>
+					</div>
+
+					<table class="table table-sm table-dark">
+						<thead>
+							<tr>
+								<th class="text-success">N°Inscription</th>
+								<th class="text-success">Déja payer</th>
+								<th class="text-danger">Reste A payer</th>
+								<th class="text-success">Ajouter un enfant</th>
+								<th class="text-primary">Ajouter un paiement</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td class="text-success">{{ "%04d"|format(parent.id)}}</td>
+								{% if dejaPayer.total  %}
+									<td class="text-success">{{  dejaPayer.total }}
+										€</td>
+								{% else %}
+									<td class="text-success">0 €</td>
+								{% endif %}
+								{# {% if dejaPayer.total  %} #}
+
+								<td class="text-danger">{{  parent.totalPaiement-dejaPayer.total }}€</td>
+								{# {% endif %} #}
+								<td>
+									<a href="{{ path('eleve_add',{id_parent: parent.id})}}" class="btn btn-sm btn-success">
+										<i class="fas fa-user-plus"></i>
+
+									</a>
+									{# <a href="{{ path('parent_update',{ id: parent.id})}}" class="btn btn-sm btn-warning">
+																																																																																																																																																																																																																																																																															<i class="fa fa-edit"></i>
+																																																																																																																																																																																																																																																																														</a>
+																																																																																																																																																																																																																																																																														<a href="{{ path('parent_delete',{ id: parent.id})}}" class="btn btn-sm btn-danger">
+																																																																																																																																																																																																																																																																															<i class="fa fa-trash"></i>
+																																																																																																																																																																																																																																																																														</a> #}
+								</td>
+								<td>
+									<a href="{{ path('paiement_add',{id_parent: parent.id})}}" class="btn btn-sm btn-primary">
+										<i class="fas fa-user-plus"></i>
+
+									</a>
+									{# <a href="{{ path('parent_update',{ id: parent.id})}}" class="btn btn-sm btn-warning">
+																																																																																																																																																																																																																																																																															<i class="fa fa-edit"></i>
+																																																																																																																																																																																																																																																																														</a>
+																																																																																																																																																																																																																																																																														<a href="{{ path('parent_delete',{ id: parent.id})}}" class="btn btn-sm btn-danger">
+																																																																																																																																																																																																																																																																															<i class="fa fa-trash"></i>
+																																																																																																																																																																																																																																																																														</a> #}
+								</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+				{% endif %}
+				<div class="card">
+
+					{% if eleves  %}
+						<table class="table table-dark table-striped">
+							<thead>
+								<tr>
+									{# <th>N°Inscription</th> #}
+									<th>Photo</th>
+									<th>Prenom</th>
+									<th>Nom de Famille</th>
+
+									<th>Date de Naissance</th>
+									<th>Sexe</th>
+									<th class="text-center">Modifier | Efacer</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for eleve in eleves %}
+									<tr>
+										{# <td>{{ "%04d" | format(eleve.getParent().id)  }}</td> #}
+										<td><img src="{{asset('/uploads/images/eleves/' ~ eleve.image) }}" alt="" width="60" height="50"></td>
+										<td>{{ eleve.prenom }}</td>
+										<td>{{ eleve.getParent().nomFamille }}</td>
+
+										<td>{{ eleve.dateNaissanceAt|date('d/m/Y') }}</td>
+										{% if eleve.Sexe  %}
+											<td>M</td>
+										{% else  %}
+											<td>F</td>
+										{% endif %}
+										<td
+											class="text-center">
+											{# <a href="{{ path('eleve_show',{id: eleve.id})}}" class="btn btn-sm btn-primary">
+																																																																																																																																																																																																																																																																											<i class="fa fa-eye"></i>
+																																																																																																																																																																																																																																																																										</a> #}
+											<a href="{{ path('eleve_updateP',{ id: eleve.id})}}" class="btn btn-sm btn-warning">
+												<i class="fa fa-edit"></i>
+											</a>
+											<a href="{{ path('eleve_delete',{ id: eleve.id})}}" class="btn btn-sm btn-danger">
+												<i class="fa fa-trash"></i>
+											</a>
+										</td>
+
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+
+					{% endif %}
+					<a href="{{ path('parent_list')}}" class="btn btn-sm btn-primary">
+						<i class="fa-solid fa-circle-arrow-left"></i>
+					</a>
+
+				</div>
+			</div>
+
+		{% endblock %}
