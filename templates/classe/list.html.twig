@@ -11,6 +11,19 @@
 			<div class="card">
 
 				{% if classes  %}
+					<button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#demo">
+						IMPRIMER UNE CLASSE
+					</button>
+					<div id="demo" class="collapse">
+						<form class="form-inline" method="post">
+							<select class="form-control" id="selectClasse" name="selectClasse">
+								{% for class in classes %}
+									<option>{{ class.nomClasse }}</option>
+								{% endfor %}
+							</select>
+							<input class="btn btn-primary" type="submit" value="Imprimer">
+						</form>
+					</div>
 					<table class="table table-dark table-striped">
 						<thead>
 							<tr>

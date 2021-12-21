@@ -23,18 +23,12 @@ class ClasseController extends AbstractController
         $this->classeRepository = $classeRepository;
         $this->entityManager = $entityManager;
     }
-    #[Route('/class', name: 'class_list')]
-    public function jsonTest(Request $request): Response
-    {
-
-        $classes=$this->classeRepository->findAll();
-        return $this->json($classes);
-    }
+  
 
     #[Route('/classes', name: 'classe_list')]
     public function index(PaginatorInterface $paginator,Request $request): Response
     {
-
+        //dd($request);
         $classes=$this->classeRepository->findAll();
                        // Paginate the results of the query
                        $classes = $paginator->paginate(
